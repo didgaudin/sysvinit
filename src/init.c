@@ -1041,8 +1041,8 @@ void init_freeenv(char **e)
 static
 pid_t spawn(CHILD *ch, int *res)
 {
-  char *args[16];		/* Argv array */
-  char buf[136];		/* Line buffer */
+  char *args[64];		/* Argv array */
+  char buf[1024];		/* Line buffer */
   int f, st;			/* Scratch variables */
   char *ptr;			/* Ditto */
   time_t t;			/* System time */
@@ -1123,7 +1123,7 @@ pid_t spawn(CHILD *ch, int *res)
         if (proc[0] == '@') proc++;
   	strncat(buf, proc, sizeof(buf) - 1);
   	ptr = buf;
-  	for(f = 1; f < 15; f++) {
+  	for(f = 1; f < 63; f++) {
   		/* Skip white space */
   		while(*ptr == ' ' || *ptr == '\t') ptr++;
   		args[f] = ptr;
@@ -1453,7 +1453,7 @@ void read_inittab(void)
   struct stat	st;			/* To stat INITLVL */
 #endif
   sigset_t	nmask, omask;		/* For blocking SIGCHLD. */
-  char		buf[256];		/* Line buffer */
+  char		buf[1024];		/* Line buffer */
   char		err[64];		/* Error message. */
   char		*id, *rlevel,
 		*action, *process;	/* Fields of a line */
