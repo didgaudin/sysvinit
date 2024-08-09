@@ -97,7 +97,7 @@ typedef struct _child_ {
   char id[8];			/* Inittab id (must be unique) */
   char rlevel[12];		/* run levels */
   int action;			/* what to do (see list below) */
-  char process[128];		/* The command line */
+  char process[512];		/* The command line */
   struct _child_ *new;		/* New entry (after inittab re-read) */
   struct _child_ *next;		/* For the linked list */
 } CHILD;
